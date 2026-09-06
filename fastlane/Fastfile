@@ -123,6 +123,18 @@ ACTIVE_STORE_LOCALES = %w[
 # Override with comma-separated STORE_PLATFORMS=ios,xros for partial retries.
 STORE_PLATFORMS = (ENV["STORE_PLATFORMS"] || "ios,osx,appletvos,xros").split(",").map(&:strip).reject(&:empty?).freeze
 
+# Binary archive destinations (Watch embeds with the iOS archive).
+# Override with ARCHIVE_PLATFORMS=ios,osx for partial retries.
+ARCHIVE_PLATFORMS = (ENV["ARCHIVE_PLATFORMS"] || "ios,osx,appletvos,xros").split(",").map(&:strip).reject(&:empty?).freeze
+ARCHIVE_SCHEME = ENV.fetch("ARCHIVE_SCHEME", "Cronica (EN-US)")
+ARCHIVE_OUTPUT_DIR = File.expand_path("build", __dir__)
+ARCHIVE_DESTINATION = {
+  "ios" => "generic/platform=iOS",
+  "osx" => "generic/platform=macOS",
+  "appletvos" => "generic/platform=tvOS",
+  "xros" => "generic/platform=visionOS"
+}.freeze
+
 RELEASE_NOTES_DIR = File.expand_path("release_notes", __dir__)
 DESCRIPTION_DIR = File.expand_path("description", __dir__)
 KEYWORDS_DIR = File.expand_path("keywords", __dir__)
@@ -288,6 +300,113 @@ def deliver_metadata!(download: false)
   end
 end
 
+def archive_export_options
+  {
+    method: "app-store",
+    signingStyle: "automatic",
+    teamID: CredentialsManager::AppfileConfig.try_fetch_value(:team_id) || "S5A7774228"
+  }
+end
+
+def archive_common_options(platform:)
+  destination = ARCHIVE_DESTINATION.fetch(platform) do
+    UI.user_error!("Unknown archive platform '#{platform}'. Expected one of: #{ARCHIVE_DESTINATION.keys.join(', ')}")
+  end
+
+  {
+    project: "Cronica.xcodeproj",
+    scheme: ARCHIVE_SCHEME,
+    clean: true,
+    configuration: "Release",
+    destination: destination,
+    output_directory: File.join(ARCHIVE_OUTPUT_DIR, platform),
+    output_name: "Cronica-#{platform}",
+    export_method: "app-store",
+    export_options: archive_export_options,
+    xcargs: "-allowProvisioningUpdates",
+    export_xcargs: "-allowProvisioningUpdates",
+    skip_profile_detection: true,
+    result_bundle: false
+  }
+end
+
+def archive_platform!(platform:)
+  out_dir = File.join(ARCHIVE_OUTPUT_DIR, platform)
+  FileUtils.mkdir_p(out_dir)
+  UI.message("Archiving #{ARCHIVE_SCHEME} for platform=#{platform}")
+
+  # Avoid leaking the previous platform's IPA/PKG into this upload.
+  lane_context.delete(SharedValues::IPA_OUTPUT_PATH)
+  lane_context.delete(SharedValues::PKG_OUTPUT_PATH) if defined?(SharedValues::PKG_OUTPUT_PATH)
+
+  if platform == "osx"
+    build_mac_app(archive_common_options(platform: platform).merge(
+      skip_package_pkg: false,
+      skip_package_ipa: true
+    ))
+  else
+    build_app(archive_common_options(platform: platform))
+  end
+
+  ipa = lane_context[SharedValues::IPA_OUTPUT_PATH]
+  pkg = defined?(SharedValues::PKG_OUTPUT_PATH) ? lane_context[SharedValues::PKG_OUTPUT_PATH] : nil
+
+  # Gym sometimes leaves Mac PKG only in a temp export folder — normalize into out_dir.
+  if platform == "osx"
+    pkg ||= Dir[File.join(out_dir, "*.pkg")].max_by { |p| File.mtime(p) }
+    if (pkg.nil? || pkg.to_s.empty?) && ipa && File.extname(ipa).downcase == ".pkg"
+      pkg = ipa
+      ipa = nil
+    end
+    if pkg && File.exist?(pkg)
+      dest = File.join(out_dir, "Cronica-osx.pkg")
+      FileUtils.cp(pkg, dest) unless File.expand_path(pkg) == File.expand_path(dest)
+      pkg = dest
+    end
+    ipa = nil
+  else
+    pkg = nil
+    ipa ||= Dir[File.join(out_dir, "*.ipa")].max_by { |p| File.mtime(p) }
+  end
+
+  {
+    platform: platform,
+    ipa: ipa,
+    pkg: pkg
+  }
+end
+
+def upload_binary!(platform:, ipa: nil, pkg: nil, submit_for_review: false)
+  api = ensure_app_store_api_key!
+  options = deliver_options(api: api, platform: platform).merge(
+    skip_binary_upload: false,
+    skip_metadata: true,
+    skip_screenshots: true,
+    submit_for_review: submit_for_review,
+    automatic_release: true
+  )
+
+  if platform == "osx"
+    UI.user_error!("No PKG produced for osx") if pkg.nil? || pkg.to_s.empty? || !File.exist?(pkg)
+    options[:pkg] = pkg
+    options.delete(:ipa)
+  else
+    UI.user_error!("No IPA produced for #{platform}") if ipa.nil? || ipa.to_s.empty? || !File.exist?(ipa)
+    options[:ipa] = ipa
+    options.delete(:pkg)
+  end
+
+  UI.message("Uploading binary for platform=#{platform}")
+  deliver(options)
+end
+
+desc "Upload an already-exported Mac PKG (path via PKG_PATH or fastlane/build/osx/Cronica-osx.pkg)"
+lane :upload_osx_pkg do
+  pkg = ENV["PKG_PATH"]
+  pkg = File.join(ARCHIVE_OUTPUT_DIR, "osx", "Cronica-osx.pkg") if pkg.nil? || pkg.empty?
+  upload_binary!(platform: "osx", pkg: pkg)
+end
+
 platform :ios do
   desc "Write marketing_url / support_url for every store locale"
   lane :sync_store_urls do
@@ -385,5 +504,63 @@ platform :ios do
   desc "Download current App Store Connect metadata (iOS) into fastlane/metadata/"
   lane :download_metadata do
     deliver_metadata!(download: true)
+  end
+
+  desc "Archive Release builds for iOS, macOS, tvOS, and visionOS (no upload)"
+  lane :archive_all do
+    failures = []
+    ARCHIVE_PLATFORMS.each do |platform|
+      begin
+        archive_platform!(platform: platform)
+      rescue => error
+        UI.error("Archive failed for #{platform}: #{error.message}")
+        failures << platform
+      end
+    end
+
+    unless failures.empty?
+      UI.user_error!("Archive incomplete for: #{failures.join(', ')}")
+    end
+  end
+
+  desc "Archive + upload binaries for all platforms (metadata unchanged unless RELEASE_UPLOAD_METADATA=1)"
+  lane :release_all do
+    ensure_app_store_api_key!
+    submit = ENV.fetch("SUBMIT_FOR_REVIEW", "false").casecmp("true").zero?
+    upload_metadata_too = ENV.fetch("RELEASE_UPLOAD_METADATA", "false").casecmp("true").zero?
+
+    failures = []
+    ARCHIVE_PLATFORMS.each do |platform|
+      begin
+        artifact = archive_platform!(platform: platform)
+        upload_binary!(
+          platform: platform,
+          ipa: artifact[:ipa],
+          pkg: artifact[:pkg],
+          submit_for_review: false
+        )
+      rescue => error
+        UI.error("Release failed for #{platform}: #{error.message}")
+        failures << platform
+      end
+    end
+
+    unless failures.empty?
+      UI.user_error!("Binary release incomplete for: #{failures.join(', ')}")
+    end
+
+    if upload_metadata_too
+      sync_release_notes
+      upload_metadata
+    end
+
+    if submit
+      UI.important(
+        "SUBMIT_FOR_REVIEW=true requested. Submit each platform version from App Store Connect " \
+        "or re-run deliver with submit_for_review once builds finish processing."
+      )
+    end
+
+    UI.success("Archived and uploaded binaries for: #{ARCHIVE_PLATFORMS.join(', ')}")
   end
 end

@@ -1,4 +1,5 @@
 app_identifier("dev.alexandremadeira.Story")
+team_id("S5A7774228")
 
 # Authentication: App Store Connect API key only (no Apple ID).
 #

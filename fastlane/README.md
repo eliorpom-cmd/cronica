@@ -87,6 +87,22 @@ Sync localized keywords and upload to all App Store platforms
 
 Download current App Store Connect metadata (iOS) into fastlane/metadata/
 
+### ios archive_all
+
+```sh
+[bundle exec] fastlane ios archive_all
+```
+
+Archive Release builds for iOS, macOS, tvOS, and visionOS (no upload)
+
+### ios release_all
+
+```sh
+[bundle exec] fastlane ios release_all
+```
+
+Archive + upload binaries for all platforms (metadata unchanged unless RELEASE_UPLOAD_METADATA=1)
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
