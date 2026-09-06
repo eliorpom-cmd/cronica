@@ -28,7 +28,7 @@ struct EmptyListView: View {
             case .released: return String(localized: "Nothing Released Yet")
             case .production: return String(localized: "Nothing Upcoming")
             case .watching: return String(localized: "Nothing Watching")
-            case .notWatched: return String(localized: "Nothing Unwatched")
+            case .notWatched: return String(localized: "Nothing To Watch")
             case .watched: return String(localized: "Nothing Watched")
             case .favorites: return String(localized: "No Favorites")
             case .pin: return String(localized: "No Pinned Items")

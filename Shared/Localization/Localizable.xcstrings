@@ -229415,6 +229415,846 @@
           }
         }
       }
+    },
+    "To Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To Watch"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu sehen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À voir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da vedere"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para Assistir"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para Ver"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na pozeranie"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por ver"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "للمشاهدة"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দেখার জন্য"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per veure"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ke shlédnutí"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At se"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προς θέαση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por ver"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Katsottavaa"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જોવા માટે"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לצפייה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "देखने के लिए"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Za gledanje"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Megnézendő"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akan Ditonton"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "これから見る"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವೀಕ್ಷಿಸಲು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "볼 예정"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "കാണാൻ"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पाहण्यासाठी"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untuk Ditonton"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Å se"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te kijken"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ଦେଖିବା ପାଇଁ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੇਖਣ ਲਈ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do obejrzenia"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De vizionat"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "К просмотру"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Za ogled"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Att se"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பார்க்க"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "చూడటానికి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รอชม"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İzlenecek"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "До перегляду"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دیکھنے کے لیے"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sẽ xem"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待看"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待看"
+          }
+        }
+      }
+    },
+    "Nothing To Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing To Watch"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nichts zu sehen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien à voir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niente da vedere"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada para assistir"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada para ver"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nič na pozeranie"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada por ver"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد شيء يستحق المشاهدة"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দেখার মতো কিছুই নেই"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Res a veure"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nic ke sledování"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intet at se på"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν υπάρχει τίποτα για να παρακολουθήσετε"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada por ver"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ei mitään katsottavaa"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જોવા માટે કંઈ નથી"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין מה לצפות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "देखने लायक कुछ नहीं है"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ništa za gledanje"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nincs mit nézni"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidak Ada yang Bisa Ditonton"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "これから見る作品はありません"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವೀಕ್ಷಿಸಲು ಏನೂ ಇಲ್ಲ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "볼 작품 없음"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "കാണാൻ ഒന്നുമില്ല"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पाहण्यासारखं काही नाही"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiada Apa Untuk Ditonton"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingenting å se på"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niets te kijken"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ଦେଖିବା ପାଇଁ କିଛି ନାହିଁ"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੇਖਣ ਲਈ ਕੁਝ ਨਹੀਂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nic do obejrzenia"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nimic de urmărit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нечего смотреть"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ničesar za gledati"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inget att titta på"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பார்ப்பதற்கு ஒன்றுமில்லை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "చూడటానికి ఏమీ లేదు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไม่มีอะไรให้ดู"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İzlenecek bir şey yok"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Немає до перегляду"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دیکھنے کے لیے کچھ نہیں۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không có gì để xem"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无待看"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暫無待看"
+          }
+        }
+      }
+    },
+    "To Watch is titles you have not started. Watching is shows in progress. Watched is finished.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To Watch is titles you have not started. Watching is shows in progress. Watched is finished."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Zu sehen“ sind Titel, die du noch nicht begonnen hast. „Schauen“ sind laufende Serien. „Beobachtet“ sind abgeschlossene Titel."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« À voir » : titres non commencés. « En cours de visionnage » : séries en cours. « Vu » : titres terminés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Da vedere » sono i titoli non iniziati. « In visione » sono le serie in corso. « Visto » sono quelli finiti."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Para Assistir » são títulos não iniciados. « Assistindo » são séries em andamento. « Assistido » são os concluídos."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Para Ver » são títulos não iniciados. « A ver » são séries em curso. « Visto » são os concluídos."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Na pozeranie“ sú nezačaté tituly. „Sledujem“ sú seriály v priebehu. „Pozreté“ sú dokončené."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Por ver » son títulos no empezados. « Viendo » son series en curso. « Visto » son los terminados."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«للمشاهدة» عناوين لم تبدأها بعد. «يشاهد» مسلسلات قيد المتابعة. «مشاهد» هي المنتهية."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘দেখার জন্য’ সেই শিরোনাম যা আপনি শুরু করেননি। ‘দেখা’ চলমান সিরিজ। ‘দেখা হয়েছে’ সম্পূর্ণ করা।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Per veure» són títols no començats. «S’està mirant» són sèries en curs. «Vist» són els acabats."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Ke shlédnutí“ jsou nezahájené tituly. „Sleduji“ jsou seriály v průběhu. „Zhlédnuto“ jsou dokončené."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“At se” er titler, du ikke har startet. “Ser” er serier i gang. “Set” er færdige."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Προς θέαση» είναι τίτλοι που δεν ξεκινήσατε. «Σε παρακολούθηση» είναι σειρές σε εξέλιξη. «Παρακολουθήθηκε» είναι τα ολοκληρωμένα."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Por ver » son títulos no empezados. « Viendo » son series en curso. « Visto » son los terminados."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Katsottavaa” ovat aloittamattomat. “Katsomassa” ovat kesken olevat sarjat. “Katsottu” ovat valmiit."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘જોવા માટે’ તે શીર્ષકો છે જે તમે શરૂ નથી કર્યા. ‘જોવાનું’ ચાલુ શ્રેણીઓ છે. ‘જોયા’ પૂર્ણ થયેલા છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“לצפייה” הם כותרים שעדיין לא התחלתם. “צופה” הן סדרות בתהליך. “נצפה” הם אלה שסיימתם."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘देखने के लिए’ वे शीर्षक हैं जिन्हें आपने शुरू नहीं किया। ‘देख रहे हैं’ चल रही श्रृंखलाएँ हैं। ‘देखा’ पूरे हो चुके हैं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Za gledanje“ su naslovi koje niste započeli. „Gledam“ su serije u tijeku. „Pogledano“ su završeni."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A „Megnézendő” a még nem elkezdett címek. A „Megtekintés alatt” a folyamatban lévő sorozatok. A „Megtekintve” a befejezettek."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Akan Ditonton” adalah judul yang belum dimulai. “Menonton” adalah serial berlangsung. “Ditonton” adalah yang selesai."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「これから見る」は未視聴の作品。「視聴中」は途中の作品。「視聴済み」は完了した作品です。"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘ವೀಕ್ಷಿಸಲು’ ನೀವು ಪ್ರಾರಂಭಿಸದ ಶೀರ್ಷಿಕೆಗಳು. ‘ನೋಡುತ್ತಿದ್ದೇನೆ’ ಪ್ರಗತಿಯಲ್ಲಿರುವ ಸರಣಿಗಳು. ‘ವೀಕ್ಷಿಸಲಾಗಿದೆ’ ಪೂರ್ಣಗೊಂಡವು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘볼 예정’은(는) 아직 시작하지 않은 작품입니다. ‘시청 중’은(는) 진행 중인 시리즈입니다. ‘시청함’은(는) 완료한 작품입니다."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘കാണാൻ’ നിങ്ങൾ തുടങ്ങാത്ത തലക്കെട്ടുകൾ. ‘നിരീക്ഷിക്കുന്നു’ പുരോഗതിയിലുള്ള സീരീസ്. ‘നിരീക്ഷിച്ചു’ പൂർത്തിയായവ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘पाहण्यासाठी’ तुम्ही सुरू न केलेली शीर्षके. ‘पहात आहे’ प्रगतीतील मालिका. ‘पाहिला’ पूर्ण झालेली."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Untuk Ditonton” ialah tajuk belum dimulakan. “Menonton” ialah siri sedang berlangsung. “Ditonton” ialah yang selesai."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Å se» er titler du ikke har startet. «Ser» er serier underveis. «Sett» er ferdige."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘Te kijken’ zijn titels die je nog niet bent begonnen. ‘Aan het kijken’ zijn series in uitvoering. ‘Bekeken’ zijn afgeronde titels."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘ଦେଖିବା ପାଇଁ’ ଆପଣ ଆରମ୍ଭ କରିନଥିବା ଶୀର୍ଷକ। ‘ଦେଖୁଛନ୍ତି’ ଚାଲୁ ଧାରାବାହିକ। ‘ଦେଖାଯାଇଛି’ ସମାପ୍ତ।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘ਦੇਖਣ ਲਈ’ ਉਹ ਸਿਰਲੇਖ ਹਨ ਜੋ ਤੁਸੀਂ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੇ। ‘ਵੇਖ ਰਹੇ ਹੋ’ ਚੱਲ ਰਹੀਆਂ ਲੜੀਆਂ ਹਨ। ‘ਵੇਖਿਆ’ ਮੁਕੰਮਲ ਹਨ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Do obejrzenia” to tytuły nierozpoczęte. „Oglądam” to seriale w toku. „Obejrzane” to zakończone."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„De vizionat” sunt titlurile neîncepute. „Vizionez” sunt serialele în curs. „Vizionat” sunt cele terminate."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«К просмотру» — ещё не начатые. «Смотрю» — сериалы в процессе. «Просмотрено» — завершённые."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "„Za ogled“ so naslovi, ki jih niste začeli. „Gledanje“ so serije v teku. „Ogledano“ so končani."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Att se” är titlar du inte börjat. “Tittar” är serier pågående. “Sedd” är avslutade."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘பார்க்க’ நீங்கள் தொடங்காத தலைப்புகள். ‘பார்ப்பது’ நடந்துகொண்டிருக்கும் தொடர்கள். ‘பார்த்தார்’ முடிந்தவை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘చూడటానికి’ మీరు ప్రారంభించని శీర్షికలు. ‘చూడటం’ జరుగుతున్న సీరీస్. ‘చూశారు’ పూర్తయినవి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“รอชม” คือเรื่องที่ยังไม่ได้เริ่ม “การรับชม” คือซีรีส์ที่กำลังดูอยู่ “ดูแล้ว” คือเรื่องที่จบแล้ว"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«İzlenecek» başlamadığınız başlıklardır. «İzliyor» devam eden dizilerdir. «İzlendi» bitmiş olanlardır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«До перегляду» — ще не початі. «Дивлюся» — серіали в процесі. «Переглянуто» — завершені."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«دیکھنے کے لیے» وہ عنوانات ہیں جو آپ نے شروع نہیں کیے۔ «دیکھ رہا ہے۔» جاری سیریز ہیں۔ «دیکھا» مکمل شدہ ہیں۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Sẽ xem” là các tựa chưa bắt đầu. “Đang xem” là phim đang theo dõi. “Đã xem” là đã hoàn thành."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“待看”是尚未开始的作品。“正在观看”是进行中的剧集。“已观看”是已完成的作品。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「待看」是尚未開始的作品。「正在觀看」是進行中的影集。「已觀看」是已完成的作品。"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

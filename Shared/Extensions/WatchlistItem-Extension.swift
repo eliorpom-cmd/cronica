@@ -163,7 +163,7 @@ extension WatchlistItem {
 	}
 	/// Schedule-based released check (does not depend on watched state).
 	/// Watched titles stay visible under the default Released smart filter;
-	/// use the Unwatched filter for the to-watch queue.
+	/// use the To Watch filter for the not-started queue.
 	var isReleasedMovie: Bool {
 		if itemMedia == .movie {
 			if date != nil && itemReleaseDate < Date() { return true }

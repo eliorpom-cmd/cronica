@@ -11,7 +11,8 @@ import Foundation
 /// This value is used to provide filter functionality for WatchlistView.
 enum SmartFiltersTypes: String, Identifiable, Hashable, CaseIterable {
     var id: String { rawValue }
-    case released, production, watching, notWatched, watched, favorites, pin, archive
+    /// Order matches the watchlist funnel: released/upcoming, then to-watch → watching → watched.
+    case released, production, notWatched, watching, watched, favorites, pin, archive
     var title: String {
         switch self {
         case .released:
@@ -29,7 +30,7 @@ enum SmartFiltersTypes: String, Identifiable, Hashable, CaseIterable {
         case .watching:
             return String(localized: "Watching")
         case .notWatched:
-            return String(localized: "Unwatched")
+            return String(localized: "To Watch")
         }
     }
 }

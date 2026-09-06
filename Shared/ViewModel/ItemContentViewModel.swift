@@ -280,7 +280,7 @@ class ItemContentViewModel: ObservableObject {
     @discardableResult
     func updateWatched(resetEpisodeProgress: Bool) -> Bool {
         guard let content else { return false }
-        // Marking Watched auto-adds. Unwatched must not resurrect a removed title.
+        // Marking Watched auto-adds. Clearing watched must not resurrect a removed title.
         if !isInWatchlist {
             if isWatched {
                 withAnimation { isWatched = false }

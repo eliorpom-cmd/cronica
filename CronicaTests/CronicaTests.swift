@@ -57,7 +57,7 @@ final class CronicaTests: XCTestCase {
     }
 
     /// Marking Watched auto-saves into the watchlist; default Released filter must still show it
-    /// (Unwatched is the to-watch queue). Regression: watched titles vanished from Released.
+    /// (To Watch is the not-started queue). Regression: watched titles vanished from Released.
     func testWatchedItemStaysVisibleInReleasedFilter() {
         let item = WatchlistItem(context: managedContext)
         item.title = "Released Movie"
@@ -79,7 +79,7 @@ final class CronicaTests: XCTestCase {
         XCTAssertTrue(persistence.isItemSaved(id: "4242@0"))
         XCTAssertTrue(item.isReleased, "Released is schedule-based; watched titles must not leave the default filter")
         XCTAssertFalse(!item.isCurrentlyWatching && !item.isWatched && item.isReleased,
-                       "Unwatched filter should exclude newly watched titles")
+                       "To Watch filter should exclude newly watched titles")
     }
 
     func testMarkWatchedOnUnsavedTitlePersistsLikeManualAdd() {

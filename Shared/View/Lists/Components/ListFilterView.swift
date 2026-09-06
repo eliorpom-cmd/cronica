@@ -43,6 +43,8 @@ struct ListFilterView: View {
                 } footer: {
                     if showAllItems {
                         Text("Smart Filters only works when 'Show All Items' is disabled.")
+                    } else {
+                        Text("To Watch is titles you have not started. Watching is shows in progress. Watched is finished.")
                     }
                 }
             }
