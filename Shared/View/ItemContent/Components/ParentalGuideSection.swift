@@ -196,6 +196,8 @@ struct ParentalGuideCategoryView: View {
                 Label("Spoiler: tap to reveal", systemImage: "eye.slash")
                     .foregroundStyle(.secondary)
             }
+            // Keep the separator full-width like the other entries instead of starting after the icon.
+            .alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
         } else {
             VStack(alignment: .leading, spacing: 4) {
                 if item.isSpoiler {
