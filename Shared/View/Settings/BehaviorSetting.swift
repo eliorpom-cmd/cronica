@@ -75,6 +75,16 @@ struct BehaviorSetting: View {
             }
 #endif
 
+#if !os(tvOS)
+            Section {
+                Toggle("Show Parents Guide", isOn: $store.showParentalGuide)
+            } header: {
+                Text("Details")
+            } footer: {
+                Text("Shows IMDb's community parents guide on movie and TV show pages.")
+            }
+#endif
+
 #if os(iOS)
             if horizontalSizeClass == .compact {
                 Section {

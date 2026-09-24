@@ -361,6 +361,7 @@
 		C0TMDBCACHE0000000002 /* TMDBAccountListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TMDBCACHE0000000001 /* TMDBAccountListCache.swift */; };
 		C0TMDBPUSH00000000002 /* TMDBPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TMDBPUSH00000000001 /* TMDBPushService.swift */; };
 		C0TMDBREVUI00000000002 /* TMDBReviewsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TMDBREVUI00000000001 /* TMDBReviewsSection.swift */; };
+		C0PARGUIDE000000000002 /* ParentalGuideSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0PARGUIDE000000000001 /* ParentalGuideSection.swift */; };
 		C0TMDBSYNC00000000002 /* TMDBSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TMDBSYNC00000000001 /* TMDBSyncService.swift */; };
 		C0TRACKLOCK00000000002 /* TrackOnLockScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TRACKLOCK00000000001 /* TrackOnLockScreenButton.swift */; };
 		C0TRENDWIDGET000000002 /* CronicaTrendingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0TRENDWIDGET000000001 /* CronicaTrendingWidget.swift */; };
@@ -748,6 +749,7 @@
 		C0TMDBCACHE0000000001 /* TMDBAccountListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAccountListCache.swift; sourceTree = "<group>"; };
 		C0TMDBPUSH00000000001 /* TMDBPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBPushService.swift; sourceTree = "<group>"; };
 		C0TMDBREVUI00000000001 /* TMDBReviewsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBReviewsSection.swift; sourceTree = "<group>"; };
+		C0PARGUIDE000000000001 /* ParentalGuideSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGuideSection.swift; sourceTree = "<group>"; };
 		C0TMDBSYNC00000000001 /* TMDBSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBSyncService.swift; sourceTree = "<group>"; };
 		C0TRACKLOCK00000000001 /* TrackOnLockScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOnLockScreenButton.swift; sourceTree = "<group>"; };
 		C0TRENDWIDGET000000001 /* CronicaTrendingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CronicaTrendingWidget.swift; sourceTree = "<group>"; };
@@ -1384,6 +1386,7 @@
 				B824E4352A04945400E385CE /* ItemContentRowView.swift */,
 				B8B2F6B32A85DBFD00FF0246 /* ItemContentSearchRowView.swift */,
 				C0TMDBREVUI00000000001 /* TMDBReviewsSection.swift */,
+				C0PARGUIDE000000000001 /* ParentalGuideSection.swift */,
 				C0ITEMHERO000000000001 /* ItemContentHeroHeader.swift */,
 			);
 			path = Components;
@@ -2231,6 +2234,7 @@
 				C0SIMKLMODEL0000000002 /* SimklModels.swift in Sources */,
 				C0SIMKLTOKEN0000000002 /* SimklTokenStore.swift in Sources */,
 				C0TMDBREVUI00000000002 /* TMDBReviewsSection.swift in Sources */,
+				C0PARGUIDE000000000002 /* ParentalGuideSection.swift in Sources */,
 				C0ITEMHERO000000000002 /* ItemContentHeroHeader.swift in Sources */,
 				C0SIMKLAPI000000000002 /* SimklAPIClient.swift in Sources */,
 				C0SIMKLAUTH00000000002 /* SimklAuthService.swift in Sources */,

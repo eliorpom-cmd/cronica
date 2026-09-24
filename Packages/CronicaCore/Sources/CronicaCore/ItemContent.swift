@@ -26,6 +26,8 @@ public struct ItemContent: Identifiable, Codable, Hashable, Sendable {
     public let recommendations: ItemContentResponse?
     public let releaseDates: ReleaseDates?
     public let contentRatings: ContentRatings?
+    /// External identifiers appended to TV show details (TMDB only exposes `imdb_id` at the root for movies).
+    public let externalIds: ExternalIDs?
     public let mediaType: String?
     public var videos: Videos?
     public var nextEpisodeToAir, lastEpisodeToAir: Episode?
@@ -42,7 +44,8 @@ public struct ItemContent: Identifiable, Codable, Hashable, Sendable {
         seasons: [Season]?, genres: [Genre]?, credits: Credits?, recommendations: ItemContentResponse?, releaseDates: ReleaseDates?,
         mediaType: String?, videos: Videos?, nextEpisodeToAir: Episode?, lastEpisodeToAir: Episode?,
         originalName: String?, firstAirDate: String?, homepage: String?, episodeRunTime: [Int]?,
-        placeholderImagePath: String?, contentRatings: ContentRatings? = nil
+        placeholderImagePath: String?, contentRatings: ContentRatings? = nil,
+        externalIds: ExternalIDs? = nil
     ) {
         self.adult = adult
         self.id = id
@@ -70,6 +73,7 @@ public struct ItemContent: Identifiable, Codable, Hashable, Sendable {
         self.recommendations = recommendations
         self.releaseDates = releaseDates
         self.contentRatings = contentRatings
+        self.externalIds = externalIds
         self.mediaType = mediaType
         self.videos = videos
         self.nextEpisodeToAir = nextEpisodeToAir
@@ -88,11 +92,28 @@ public struct ItemContent: Identifiable, Codable, Hashable, Sendable {
         case runtime, numberOfEpisodes, numberOfSeasons, voteCount
         case popularity, voteAverage
         case productionCompanies, productionCountries, seasons, genres, credits
-        case recommendations, releaseDates, contentRatings, mediaType, videos
+        case recommendations, releaseDates, contentRatings, externalIds, mediaType, videos
         case nextEpisodeToAir, lastEpisodeToAir
         case originalName, firstAirDate, homepage, episodeRunTime
     }
 }
+public struct ExternalIDs: Codable, Hashable, Sendable {
+    public let imdbId: String?
+
+    public init(imdbId: String?) {
+        self.imdbId = imdbId
+    }
+}
+
+public extension ItemContent {
+    /// IMDb identifier for movies (root `imdb_id`) or TV shows (`external_ids.imdb_id`).
+    var itemIMDbID: String? {
+        let value = imdbId ?? externalIds?.imdbId
+        guard let value, !value.isEmpty else { return nil }
+        return value
+    }
+}
+
 public struct ProductionCompany: Identifiable, Codable, Hashable {
     public let name: String
     public let id: Int
