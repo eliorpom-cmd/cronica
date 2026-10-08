@@ -248,6 +248,9 @@ struct ItemContentDetails: View {
                                averageReviewScore: viewModel.tmdbReviews.averageRatingLabel)
                 .padding(.horizontal, DrawingConstants.contentHorizontalInset)
                 .padding(.top, 16)
+
+            ParentalGuideSection(imdbID: viewModel.content?.itemIMDbID)
+                .padding(.top, 8)
             
             if let season = viewModel.content?.seasons {
                 SeasonListView(
@@ -415,6 +418,10 @@ struct ItemContentDetails: View {
                 ).padding(0)
             }
             
+            ParentalGuideSection(imdbID: viewModel.content?.itemIMDbID)
+                .frame(maxWidth: 720, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
             TrailerListView(trailers: viewModel.trailers)
             
             WatchProvidersList(id: id, type: type)
