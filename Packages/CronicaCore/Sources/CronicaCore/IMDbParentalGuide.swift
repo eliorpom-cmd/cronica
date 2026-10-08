@@ -78,10 +78,13 @@ public struct IMDbParentalGuide: Hashable, Sendable {
     public struct Item: Hashable, Sendable {
         public let text: String
         public let isSpoiler: Bool
+        /// True when `text` is IMDb's machine translation of the original entry.
+        public let isMachineTranslated: Bool
 
-        public init(text: String, isSpoiler: Bool) {
+        public init(text: String, isSpoiler: Bool, isMachineTranslated: Bool = false) {
             self.text = text
             self.isSpoiler = isSpoiler
+            self.isMachineTranslated = isMachineTranslated
         }
     }
 
@@ -124,7 +127,8 @@ public final class IMDbParentalGuideService: Sendable {
 #endif
 
     /// Decodes the page's embedded Next.js data (`__NEXT_DATA__`).
-    static func decode(_ data: Data, imdbID: String) throws -> IMDbParentalGuide {
+    /// - Parameter language: App language code; entries use IMDb's machine translation when it matches.
+    static func decode(_ data: Data, imdbID: String, language: String = appLanguageCode) throws -> IMDbParentalGuide {
         let page = try JSONDecoder().decode(PagePayload.self, from: data)
         guard let title = page.props.pageProps.contentData?.data?.title,
               let guide = title.parentsGuide else {
@@ -142,9 +146,17 @@ public final class IMDbParentalGuideService: Sendable {
             }
             let entries = listed[raw.category.id] ?? nil
             let items = (entries?.edges ?? []).compactMap { edge -> IMDbParentalGuide.Item? in
+                let isSpoiler = edge.node.isSpoiler ?? false
+                if let translation = edge.node.machineTranslatedText,
+                   translation.isMachineTranslation == true,
+                   translation.language?.id.flatMap(languageCode) == language,
+                   let html = translation.value?.plaidHtml {
+                    let text = plainText(fromHTML: html)
+                    if !text.isEmpty { return .init(text: text, isSpoiler: isSpoiler, isMachineTranslated: true) }
+                }
                 guard let html = edge.node.text?.plaidHtml else { return nil }
                 let text = plainText(fromHTML: html)
-                return text.isEmpty ? nil : .init(text: text, isSpoiler: edge.node.isSpoiler ?? false)
+                return text.isEmpty ? nil : .init(text: text, isSpoiler: isSpoiler)
             }
             return IMDbParentalGuide.Category(
                 id: raw.category.id,
@@ -158,6 +170,16 @@ public final class IMDbParentalGuideService: Sendable {
             )
         }
         return IMDbParentalGuide(imdbID: imdbID, certificate: title.certificate?.rating, categories: categories)
+    }
+
+    /// Language the app's interface is shown in, e.g. "fr" for "fr-CA".
+    static var appLanguageCode: String {
+        Bundle.main.preferredLocalizations.first.flatMap(languageCode) ?? Locale.userLanguageCode
+    }
+
+    /// Language part of an identifier such as "fr-FR" or "zh-Hant".
+    private static func languageCode(_ identifier: String) -> String? {
+        Locale(identifier: identifier).language.languageCode?.identifier
     }
 
     /// Turns IMDb's lightweight entry HTML into plain text.
@@ -252,6 +274,17 @@ private struct PagePayload: Decodable {
     struct Node: Decodable {
         let isSpoiler: Bool?
         let text: Markdown?
+        let machineTranslatedText: Translation?
+    }
+
+    struct Translation: Decodable {
+        let language: TranslationLanguage?
+        let value: Markdown?
+        let isMachineTranslation: Bool?
+    }
+
+    struct TranslationLanguage: Decodable {
+        let id: String?
     }
 
     struct Markdown: Decodable {

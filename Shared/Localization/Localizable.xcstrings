@@ -1961,6 +1961,286 @@
         }
       }
     },
+    "Entries translated automatically by IMDb.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ترجمت IMDb هذه الإدخالات تلقائيًا."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এন্ট্রিগুলো IMDb স্বয়ংক্রিয়ভাবে অনুবাদ করেছে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrades traduïdes automàticament per IMDb."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záznamy automaticky přeložila služba IMDb."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indlæggene er oversat automatisk af IMDb."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einträge automatisch von IMDb übersetzt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Οι καταχωρίσεις μεταφράστηκαν αυτόματα από το IMDb."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entries translated automatically by IMDb."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entradas traducidas automáticamente por IMDb."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entradas traducidas automáticamente por IMDb."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMDb on kääntänyt merkinnät automaattisesti."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrées traduites automatiquement par IMDb."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "એન્ટ્રીઓનો IMDb દ્વારા આપમેળે અનુવાદ કરવામાં આવ્યો છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הרשומות תורגמו אוטומטית על ידי IMDb."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रविष्टियों का अनुवाद IMDb ने अपने आप किया है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unose je automatski preveo IMDb."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bejegyzéseket az IMDb automatikusan fordította le."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entri diterjemahkan secara otomatis oleh IMDb."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voci tradotte automaticamente da IMDb."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エントリはIMDbによって自動翻訳されています。"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಮೂದುಗಳನ್ನು IMDb ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನುವಾದಿಸಿದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "항목은 IMDb에서 자동 번역되었습니다."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എൻട്രികൾ IMDb സ്വയമേവ വിവർത്തനം ചെയ്തതാണ്."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नोंदींचे भाषांतर IMDb ने आपोआप केले आहे."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entri diterjemahkan secara automatik oleh IMDb."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppføringene er oversatt automatisk av IMDb."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vermeldingen automatisch vertaald door IMDb."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ଏଣ୍ଟ୍ରିଗୁଡ଼ିକ IMDb ଦ୍ୱାରା ସ୍ୱୟଂଚାଳିତ ଭାବେ ଅନୁବାଦିତ।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਂਟਰੀਆਂ ਦਾ IMDb ਵੱਲੋਂ ਆਪਣੇ-ਆਪ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wpisy przetłumaczone automatycznie przez IMDb."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entradas traduzidas automaticamente pelo IMDb."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entradas traduzidas automaticamente pelo IMDb."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intrări traduse automat de IMDb."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Записи автоматически переведены IMDb."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Záznamy automaticky preložila služba IMDb."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vnose je samodejno prevedel IMDb."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posterna är automatiskt översatta av IMDb."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பதிவுகள் IMDb ஆல் தானாக மொழிபெயர்க்கப்பட்டவை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఎంట్రీలను IMDb స్వయంచాలకంగా అనువదించింది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "รายการเหล่านี้แปลโดยอัตโนมัติโดย IMDb"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Girdiler IMDb tarafından otomatik olarak çevrildi."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Записи автоматично перекладено IMDb."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اندراجات کا ترجمہ IMDb نے خودکار طور پر کیا ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Các mục được IMDb dịch tự động."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条目由 IMDb 自动翻译。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "項目由 IMDb 自動翻譯。"
+          }
+        }
+      }
+    },
     "No details yet.": {
       "localizations": {
         "ar": {

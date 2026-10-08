@@ -135,8 +135,13 @@ struct ParentalGuideCategoryView: View {
                         }
                     }
                 } footer: {
-                    if category.totalItems > category.items.count {
-                        Text("Showing \(category.items.count) of \(category.totalItems) entries.")
+                    VStack(alignment: .leading, spacing: 4) {
+                        if category.totalItems > category.items.count {
+                            Text("Showing \(category.items.count) of \(category.totalItems) entries.")
+                        }
+                        if category.items.contains(where: \.isMachineTranslated) {
+                            Text("Entries translated automatically by IMDb.")
+                        }
                     }
                 }
             }

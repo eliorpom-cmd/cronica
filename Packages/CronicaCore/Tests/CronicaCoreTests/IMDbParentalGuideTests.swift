@@ -25,7 +25,7 @@ final class IMDbParentalGuideTests: XCTestCase {
         }}}}}}}
         """.data(using: .utf8)!
 
-        let guide = try IMDbParentalGuideService.decode(json, imdbID: "tt0097165")
+        let guide = try IMDbParentalGuideService.decode(json, imdbID: "tt0097165", language: "en")
 
         XCTAssertEqual(guide.certificate, "PG")
         XCTAssertEqual(guide.categories.count, 2)
@@ -43,6 +43,23 @@ final class IMDbParentalGuideTests: XCTestCase {
         XCTAssertNil(guide.categories[1].severity)
         XCTAssertFalse(guide.isEmpty)
         XCTAssertEqual(guide.webURL?.absoluteString, "https://www.imdb.com/title/tt0097165/parentalguide/")
+    }
+
+    func testUsesMachineTranslationOnlyForTheAppLanguage() throws {
+        let json = """
+        {"props":{"pageProps":{"contentData":{"data":{"title":{"parentsGuide":{
+          "categories":[{"category":{"id":"VIOLENCE","text":"Violence et horreur"},"severity":null}],
+          "nonSpoilerCategories":[{"category":{"id":"VIOLENCE"},"guideItems":{"total":1,"edges":[
+            {"node":{"isSpoiler":false,"text":{"plaidHtml":"A fight breaks out."},
+                     "machineTranslatedText":{"language":{"id":"fr-FR"},"value":{"plaidHtml":"Une bagarre éclate."},"isMachineTranslation":true}}}]}}]
+        }}}}}}}
+        """.data(using: .utf8)!
+
+        let french = try IMDbParentalGuideService.decode(json, imdbID: "tt0", language: "fr")
+        XCTAssertEqual(french.categories[0].items, [.init(text: "Une bagarre éclate.", isSpoiler: false, isMachineTranslated: true)])
+
+        let german = try IMDbParentalGuideService.decode(json, imdbID: "tt0", language: "de")
+        XCTAssertEqual(german.categories[0].items, [.init(text: "A fight breaks out.", isSpoiler: false)])
     }
 
     func testMissingGuideThrows() {
