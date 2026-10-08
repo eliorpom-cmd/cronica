@@ -104,72 +104,47 @@ public struct IMDbParentalGuide: Hashable, Sendable {
     }
 }
 
-/// Fetches parents guides from IMDb's public GraphQL endpoint (the one imdb.com itself uses).
+/// Reads parents guides from IMDb's public parents guide page.
+///
+/// The page is loaded in WebKit, the engine Safari uses, so IMDb serves it as it would to any visitor.
+/// The guide is then read from the data the page embeds for its own rendering.
 public final class IMDbParentalGuideService: Sendable {
     public static let shared = IMDbParentalGuideService()
-    private let session: URLSession
-    private static let endpoint = URL(string: "https://caching.graphql.imdb.com/")!
-    private static let query = """
-    query ParentsGuide($id: ID!) {
-      title(id: $id) {
-        certificate { rating }
-        parentsGuide {
-          categories {
-            category { id text }
-            severity { id text votedFor }
-            totalSeverityVotes
-            severityBreakdown { id text votedFor }
-            guideItems(first: 250) {
-              total
-              edges { node { isSpoiler text { plainText } } }
-            }
-          }
+
+    public init() {}
+
+#if canImport(WebKit)
+    public func fetch(imdbID: String) async throws -> IMDbParentalGuide {
+        guard let url = IMDbParentalGuide(imdbID: imdbID, certificate: nil, categories: []).webURL else {
+            throw NetworkError.invalidRequest
         }
-      }
-    }
-    """
-
-    public init(session: URLSession = .shared) {
-        self.session = session
-    }
-
-    public func fetch(imdbID: String,
-                      language: String = Locale.userLang,
-                      country: String = Locale.userRegion) async throws -> IMDbParentalGuide {
-        let body: [String: Any] = [
-            "query": Self.query,
-            "variables": ["id": imdbID]
-        ]
-        var request = URLRequest(url: Self.endpoint)
-        request.httpMethod = "POST"
-        request.httpBody = try JSONSerialization.data(withJSONObject: body)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        // The endpoint rejects requests that don't look like they come from imdb.com.
-        request.setValue("https://www.imdb.com", forHTTPHeaderField: "Origin")
-        request.setValue("imdb-web-next-localized", forHTTPHeaderField: "x-imdb-client-name")
-        request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
-        request.setValue(language, forHTTPHeaderField: "x-imdb-user-language")
-        request.setValue(country, forHTTPHeaderField: "x-imdb-user-country")
-
-        let (data, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-            throw NetworkError.invalidResponse
-        }
+        let data = try await IMDbPageLoader.embeddedData(from: url)
         return try Self.decode(data, imdbID: imdbID)
     }
+#endif
 
+    /// Decodes the page's embedded Next.js data (`__NEXT_DATA__`).
     static func decode(_ data: Data, imdbID: String) throws -> IMDbParentalGuide {
-        let response = try JSONDecoder().decode(GraphQLResponse.self, from: data)
-        guard let title = response.data?.title else { throw NetworkError.invalidResponse }
-        let categories = (title.parentsGuide?.categories ?? []).map { raw in
+        let page = try JSONDecoder().decode(PagePayload.self, from: data)
+        guard let title = page.props.pageProps.contentData?.data?.title,
+              let guide = title.parentsGuide else {
+            throw NetworkError.invalidResponse
+        }
+        // The page lists up to 10 non-spoiler entries per category; spoilers only load on demand.
+        let listed = Dictionary(guide.nonSpoilerCategories?.map { ($0.category.id, $0.guideItems) } ?? [],
+                                uniquingKeysWith: { first, _ in first })
+        let hiddenSpoilers = Dictionary(guide.spoilerCategories?.map { ($0.category.id, $0.guideItems?.total ?? 0) } ?? [],
+                                        uniquingKeysWith: { first, _ in first })
+        let categories = (guide.categories ?? []).map { raw in
             let votes = (raw.severityBreakdown ?? []).compactMap { vote -> IMDbParentalGuide.SeverityVote? in
                 guard let severity = IMDbParentalGuide.Severity(imdbID: vote.id) else { return nil }
                 return .init(severity: severity, label: vote.text ?? "", count: vote.votedFor ?? 0)
             }
-            let items = (raw.guideItems?.edges ?? []).compactMap { edge -> IMDbParentalGuide.Item? in
-                guard let text = edge.node.text?.plainText?.trimmingCharacters(in: .whitespacesAndNewlines),
-                      !text.isEmpty else { return nil }
-                return .init(text: text, isSpoiler: edge.node.isSpoiler ?? false)
+            let entries = listed[raw.category.id] ?? nil
+            let items = (entries?.edges ?? []).compactMap { edge -> IMDbParentalGuide.Item? in
+                guard let html = edge.node.text?.plaidHtml else { return nil }
+                let text = plainText(fromHTML: html)
+                return text.isEmpty ? nil : .init(text: text, isSpoiler: edge.node.isSpoiler ?? false)
             }
             return IMDbParentalGuide.Category(
                 id: raw.category.id,
@@ -179,19 +154,49 @@ public final class IMDbParentalGuideService: Sendable {
                 votes: votes,
                 totalVotes: raw.totalSeverityVotes ?? votes.reduce(0) { $0 + $1.count },
                 items: items,
-                totalItems: raw.guideItems?.total ?? items.count
+                totalItems: (entries?.total ?? items.count) + hiddenSpoilers[raw.category.id, default: 0]
             )
         }
         return IMDbParentalGuide(imdbID: imdbID, certificate: title.certificate?.rating, categories: categories)
     }
 
-    private static let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
+    /// Turns IMDb's lightweight entry HTML into plain text.
+    static func plainText(fromHTML html: String) -> String {
+        var text = html.replacingOccurrences(of: "<br\\s*/?>", with: "\n", options: [.regularExpression, .caseInsensitive])
+        text = text.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+        if let numeric = try? Regex("&#(x?)([0-9A-Fa-f]+);") {
+            text = text.replacing(numeric) { match in
+                let isHex = match.output[1].substring?.isEmpty == false
+                let scalar = match.output[2].substring
+                    .flatMap { UInt32($0, radix: isHex ? 16 : 10) }
+                    .flatMap(Unicode.Scalar.init)
+                return scalar.map { String(Character($0)) } ?? String(match.output[0].substring ?? "")
+            }
+        }
+        // `&amp;` goes last so an escaped entity like `&amp;lt;` stays literal.
+        for (entity, character) in [("&lt;", "<"), ("&gt;", ">"), ("&quot;", "\""), ("&apos;", "'"), ("&nbsp;", " "), ("&amp;", "&")] {
+            text = text.replacingOccurrences(of: entity, with: character)
+        }
+        return text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
-// MARK: - GraphQL payload
+// MARK: - Page payload
 
-private struct GraphQLResponse: Decodable {
-    let data: DataContainer?
+private struct PagePayload: Decodable {
+    let props: Props
+
+    struct Props: Decodable {
+        let pageProps: PageProps
+    }
+
+    struct PageProps: Decodable {
+        let contentData: ContentData?
+    }
+
+    struct ContentData: Decodable {
+        let data: DataContainer?
+    }
 
     struct DataContainer: Decodable {
         let title: Title?
@@ -208,6 +213,8 @@ private struct GraphQLResponse: Decodable {
 
     struct ParentsGuide: Decodable {
         let categories: [Category]?
+        let nonSpoilerCategories: [ItemsByCategory]?
+        let spoilerCategories: [ItemsByCategory]?
     }
 
     struct Category: Decodable {
@@ -215,6 +222,10 @@ private struct GraphQLResponse: Decodable {
         let severity: Vote?
         let totalSeverityVotes: Int?
         let severityBreakdown: [Vote]?
+    }
+
+    struct ItemsByCategory: Decodable {
+        let category: Label
         let guideItems: GuideItems?
     }
 
@@ -244,6 +255,6 @@ private struct GraphQLResponse: Decodable {
     }
 
     struct Markdown: Decodable {
-        let plainText: String?
+        let plaidHtml: String?
     }
 }
